@@ -1,0 +1,8 @@
+/**
+ * @typedef {import('./condition.jsdoc').Condition} Condition
+ */
+
+/**
+ * @typedef {Object} Rule
+ * @property {(Condition | Array.<Condition>)} conditions - The conditions of the rule.
+ */

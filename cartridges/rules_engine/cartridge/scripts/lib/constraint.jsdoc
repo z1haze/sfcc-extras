@@ -1,0 +1,6 @@
+/**
+ * @typedef {Object} Constraint
+ * @property {string} field - The field of the constraint.
+ * @property {('equals' | 'does not equal' | 'greater than' | 'less than' | 'greater than or equal' | 'less than or equal' | 'exists' | 'does not exist' | 'in' | 'not in' | 'contains' | 'not contains' | 'contains any' | 'not contains any' | 'matches' | 'does not match')} operator - The operator of the constraint.
+ * @property {(string | number | boolean | Object | Array.<(string | number | boolean | Object)>)} value - The value of the constraint.
+ */

@@ -1,0 +1,3 @@
+/**
+ * @typedef {"==" | "!=" | ">" | "<" | ">=" | "<=" | "in" | "not in" | "contains" | "not contains" | "contains any" | "not contains any" | "matches" | "not matches"} Operator
+ */

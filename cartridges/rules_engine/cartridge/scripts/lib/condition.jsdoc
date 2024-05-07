@@ -1,0 +1,11 @@
+/**
+ * @typedef {import('./constraint.jsdoc').Constraint} Constraint
+ */
+
+/**
+ * @typedef {Object} Condition
+ * @property {Array.<(Constraint | Condition)>} [any] - An array of Constraints or Conditions, any of which must be true.
+ * @property {Array.<(Constraint | Condition)>} [all] - An array of Constraints or Conditions, all of which must be true.
+ * @property {Array.<(Constraint | Condition)>} [none] - An array of Constraints or Conditions, none of which must be true.
+ * @property {*} [result] - The result of the condition.
+ */
