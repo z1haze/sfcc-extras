@@ -5,8 +5,10 @@ Rules Engine
 
 ### Why do I need this?
 
-As early adopters of Salesforce's SCAPI, we found there was no built-in way to segment personalized information to our customers in our mobile app. We developed
-this project in order to facilitate a need to deliver individuals personalized content on in our mobile application based on a wide range of criteria. This project
+As early adopters of Salesforce's SCAPI, we found there was no built-in way to segment personalized information to our
+customers in our mobile app. We developed
+this project in order to facilitate a need to deliver individuals personalized content on in our mobile application
+based on a wide range of criteria. This project
 is heavily inspired by https://github.com/andrewbrg/rulepilot -- huge credit to the author!
 
 ### Usage
@@ -24,7 +26,8 @@ engine.evaluate(rule, criteria);
 
 ### Basic Example
 
-A business usecase for the following example is to target customers who have push notifications disabled, and show them some sort of banner that will encourage them
+A business usecase for the following example is to target customers who have push notifications disabled, and show them
+some sort of banner that will encourage them
 to push notifications.
 
 ```js
@@ -52,7 +55,8 @@ const hasPushDisabled = engine.evaluate(rule, criteria); // true
 
 ### Multi Condition Example
 
-Another simple example would be to target customers by their gender, and whether they are signed in. So below, we are targeted sign in females.
+Another simple example would be to target customers by their gender, and whether they are signed in. So below, we are
+targeted sign in females.
 
 ```js
 const RulesEngine = require('*/cartridge/scripts/lib/RulesEngine');
@@ -84,6 +88,7 @@ const isSignedInFemale = engine.evaluate(rule, criteria);
 ```
 
 #### Condition Types
+
 There are three (3) types of conditions which can be used in a rule:
 
 * all - All criteria in the condition must be met
@@ -93,6 +98,7 @@ There are three (3) types of conditions which can be used in a rule:
 Condition types can be mixed and matched or nested to create complex rules.
 
 #### Operators
+
 These are the operators available for a constraint and how they are used:
 
 * `equals`: Applies JavaScript equality (==) operator to criterion and constraint value
@@ -106,9 +112,11 @@ These are the operators available for a constraint and how they are used:
 * `in`: Tests if the criterion is an element of the constraint value (value must be an array)
 * `not in`: Tests if the criterion is not an element of the constraint value (value must be an array)
 * `contains`: Tests if the constraint value is an element of the criterion (criterion must be an array)
-* `contains any`: Tests if any element in the constraint value is an element of the criterion (criterion and constraint value must be an array)
+* `contains any`: Tests if any element in the constraint value is an element of the criterion (criterion and constraint
+  value must be an array)
 * `not contains`: Tests if the constraint value is not an element of the criterion (criterion must be an array)
-* `not contains any`: Tests if any element in the constraint value is bot an element of the criterion (criterion and constraint value must be an array)
+* `not contains any`: Tests if any element in the constraint value is bot an element of the criterion (criterion and
+  constraint value must be an array)
 * `matches`: Tests if the constraint value matches a regular expression (criterion must be a valid regex)
 * `does not match`: Tests if the constraint value does not match a regular expression (criterion must be a valid regex)
 
@@ -116,7 +124,8 @@ These are the operators available for a constraint and how they are used:
 
 In some cases, the criteria which is used to evaluate a rule might be more complex objects with nested properties.
 
-For example, we might want to evaluate a rule against a `Customer` object which has a profile property which contains the customer's profile information.
+For example, we might want to evaluate a rule against a `Customer` object which has a profile property which contains
+the customer's profile information.
 
 ```js
 const RulesEngine = require('*/cartridge/scripts/lib/RulesEngine');
@@ -150,7 +159,8 @@ engine.evaluate(rule, criteria);
 
 Validation can be performed on a rule to ensure it is valid and properly structured.
 
-The `validate()` method will return `true` if the rule is valid, otherwise it will return an error message describing the problem along with the problem node from the rule for easy debugging.
+The `validate()` method will return `true` if the rule is valid, otherwise it will return an error message describing
+the problem along with the problem node from the rule for easy debugging.
 
 ```js
 const rule = {...};
@@ -159,4 +169,5 @@ const result = engine.validate(rule);
 ```
 
 ### Inspiration
+
 Special thanks to https://github.com/andrewbrg/rulepilot for the inspiration to create this cartridge

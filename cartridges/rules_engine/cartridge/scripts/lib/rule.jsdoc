@@ -4,5 +4,8 @@
 
 /**
  * @typedef {Object} Rule
- * @property {(Condition | Array.<Condition>)} conditions - The conditions of the rule.
+ * @property {string} id - The id of the rule.
+ * @property {string} label - The label of the rule.
+ * @property {string} [description] - The description of the rule.
+ * @property {Condition|Condition[]} conditions - The conditions of the rule.
  */
