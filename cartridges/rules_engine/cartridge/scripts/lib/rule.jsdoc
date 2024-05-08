@@ -3,7 +3,7 @@
  */
 
 /**
- * @typedef {Object} Rule
+ * @typedef {Object|string} Rule
  * @property {string} id - The id of the rule.
  * @property {string} label - The label of the rule.
  * @property {string} [description] - The description of the rule.

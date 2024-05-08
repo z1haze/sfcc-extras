@@ -1,5 +1,6 @@
 const Class = require('~/cartridge/scripts/util/Class').Class;
 const ObjectDiscovery = require('~/cartridge/scripts/lib/ObjectDiscovery');
+const getConditionsByRoleId = require('~/cartridge/scripts/util/getConditionsByRoleId');
 
 /**
  * @typedef {import('./condition.jsdoc').Condition} Condition
@@ -27,7 +28,7 @@ const Evaluator = Class.extend({
     /**
      * @method
      * @name evaluate
-     * @param {Rule | Array<Rule>} rule - The rule to evaluate.
+     * @param {Rule} rule - The rule to evaluate.
      * @param {Object | Array.<Object>} criteria - The criteria to evaluate the rule against.
      * @returns {boolean | Array.<boolean>} - The result of the evaluation.
      */
@@ -45,24 +46,6 @@ const Evaluator = Class.extend({
         }
 
         return this._evaluateRule(conditions, criteria);
-    },
-
-    /**
-     * @method
-     * @name _getById
-     * @param {string} id
-     * @returns {Condition|Array<Condition>}
-     * @description Validates a rule. It checks if the rule is a valid JSON object and if it contains at least one condition.
-     * @private
-     */
-    _getById: function (id) {
-        const rule = [].find.call(this._rules, (r) => r.custom.id === id);
-
-        if (!rule) {
-            throw new Error('Invalid rule reference. ' + id + ' does not reference any known rule.');
-        }
-
-        return JSON.parse(rule.custom.conditions);
     },
 
     /**
@@ -107,7 +90,7 @@ const Evaluator = Class.extend({
 
             // Check if the condition is a reference to another rule.
             if (typeof node === 'string') {
-                node = this._getById(node);
+                node = getConditionsByRoleId(this._rules, node);
             }
 
             if (this._objectDiscovery.isCondition(node)) {

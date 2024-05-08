@@ -1,5 +1,6 @@
 const Class = require('~/cartridge/scripts/util/Class').Class;
 const ObjectDiscovery = require('~/cartridge/scripts/lib/ObjectDiscovery');
+const getConditionsByRoleId = require('~/cartridge/scripts/util/getConditionsByRoleId');
 
 /**
  * @typedef {import('./rule.jsdoc').Rule} Rule
@@ -36,7 +37,7 @@ const Validator = Class.extend({
     /**
      * @method
      * @name validate
-     * @param {Object} rule - The rule to validate.
+     * @param {Rule} rule - The rule to validate.
      * @returns {Object} - The result of the validation.
      * @description Validates a rule. It checks if the rule is a valid JSON object and if it contains at least one condition.
      */
@@ -84,24 +85,6 @@ const Validator = Class.extend({
 
     /**
      * @method
-     * @name _getById
-     * @param {string} id
-     * @returns {Condition|Array<Condition>}
-     * @description Validates a rule. It checks if the rule is a valid JSON object and if it contains at least one condition.
-     * @private
-     */
-    _getById: function (id) {
-        const rule = [].find.call(this._rules, (r) => r.custom.id === id);
-
-        if (!rule) {
-            throw new Error('Invalid rule reference. ' + id + ' does not reference any known rule.');
-        }
-
-        return JSON.parse(rule.custom.conditions);
-    },
-
-    /**
-     * @method
      * @name _validateCondition
      * @param {Object} condition - The condition to validate.
      * @param {number} depth - The depth of the condition in the rule.
@@ -115,7 +98,7 @@ const Validator = Class.extend({
 
         // Check if the condition is a reference to another rule.
         if (typeof condition === 'string') {
-            condition = this._getById(condition);
+            condition = getConditionsByRoleId(this._rules, condition);
         }
 
         const result = this._isValidCondition(condition);
@@ -138,7 +121,7 @@ const Validator = Class.extend({
 
         for (let node of condition[type]) {
             if (typeof node === 'string') {
-                node = this._getById(node);
+                node = getConditionsByRoleId(this._rules, node);
             }
 
             let isCondition = this._objectDiscovery.isCondition(node);
