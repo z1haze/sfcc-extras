@@ -43,7 +43,7 @@ const RulesEngine = Class.extend({
      * @method
      * @name _getById
      * @param {string} id
-     * @returns {id: string, label: string, conditions: Condition|Array<Condition>, lastModified: string} - The rule that matches the id.
+     * @returns {{id: string, label: string, conditions: Condition|Array<Condition>, lastModified: string}|undefined} - The rule that matches the id.
      * @description Validates a rule. It checks if the rule is a valid JSON object and if it contains at least one condition.
      * @private
      */
@@ -52,6 +52,7 @@ const RulesEngine = Class.extend({
 
         if (!rule) {
             dw.system.Logger.error('Invalid rule reference. ' + id + ' does not reference any known rule.');
+            return;
         }
 
         return {
