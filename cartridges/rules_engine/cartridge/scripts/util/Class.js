@@ -3,6 +3,7 @@
  * @module util/Class
  */
 
+
 /**
  * Base class which allows simple inheritance.
  *
